@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UberLoginTestApp</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="container">
+        <header>
+          <h1>
+            UberLogin testing application
+            <% if current_user %>
+              <small><a href="/session" data-method="delete">Logout</a></small>
+            <% end %>
+          </h1>
+        </header>
+        <%= yield %>
+    </div>
+</body>
+</html>

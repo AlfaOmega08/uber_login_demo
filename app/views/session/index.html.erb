@@ -1,0 +1,22 @@
+<h5>Logged in as <%= current_user.username %></h5>
+
+<h3>All of your sessions:</h3>
+
+<% LoginToken.where(uid: current_user.id).each do |token| %>
+    <div class="token">
+      <div><b>Session:</b> <%= token.sequence %></div>
+      <div><b>Started:</b> <%= token.updated_at %></div>
+      <% if token.respond_to? :ip_address %>
+          <div><b>IP:</b> <%= token.ip_address %></div>
+      <% end %>
+      <% if token.respond_to? :os %>
+          <div><b>Operating System:</b> <%= token.os %></div>
+      <% end %>
+      <% if token.respond_to? :browser %>
+          <div><b>Browser:</b> <%= token.browser %></div>
+      <% end %>
+      <a href="/session/<%= token.sequence %>" data-method="delete" data-confirm="Are you sure?">Delete</a>
+    </div>
+<% end %>
+
+<div><a href="/session/logout_all" data-method="post">Quit all open sessions.</a></div>
